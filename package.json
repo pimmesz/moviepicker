@@ -1,0 +1,8 @@
+{
+  "name": "moviepicker",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}
