@@ -1,0 +1,14 @@
+<h1>Searches#index</h1>
+<p>Find me in app/views/searches/index.html.erb</p>
+
+<%= form_tag searches_path, method: :get do %>
+  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a flat" %>
+  <%= submit_tag("Find") %>
+<% end %>
+
+<% @results.each do |movie| %>
+  <p><%= movie["title"] %></p>
+  <p><%= movie %></p>
+  <p><%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie["poster_path"]}" %></p>
+<% end %>
+
