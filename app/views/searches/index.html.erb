@@ -8,10 +8,18 @@
 
 <% if @results.present? %>
   <% @results.each do |movie| %>
-  <div class="movie-details" style="background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1))), url('https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%= movie['backdrop_path'] %>') no-repeat;  -webkit-background-size: cover;")>
-    <p><%= movie["title"] %></p>
-    <p><%= movie %></p>
-    <p><%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie["poster_path"]}" %></p>
+  <div class="movie-details")>
+    <div class="movie-description">
+      <p><%= movie["title"] %></p>
+      <p><%= movie %></p>
+      <p><% movie_id = movie["id"] %></p>
+      <% if Tmdb::Movie.trailers("#{movie['id']}")["youtube"].present? %>
+        <p><%#= link_to "trailer", "https://www.youtube.com/watch?v=#{Tmdb::Movie.trailers("#{movie['id']}")["youtube"].first["source"]}" %></p>
+      <% end %>
+    </div>
+    <div class="movie-image">
+      <p><%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie["poster_path"]}" %></p>
+    </div>
   </div>
   <% end %>
 <% end %>
