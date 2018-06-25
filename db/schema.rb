@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_112854) do
+ActiveRecord::Schema.define(version: 2018_06_25_085934) do
 
   create_table "searches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "searchquery"
+    t.string "category"
   end
 
 end

@@ -1,13 +1,17 @@
 <h1>Searches#index</h1>
 <p>Find me in app/views/searches/index.html.erb</p>
-
 <%= form_tag searches_path, method: :get do %>
-<%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a flat" %>
-<%= submit_tag("Find") %>
+  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find an actor or movie" %>
+  <%= select_tag "category", options_for_select(["Movie", "Person"]) %>
+  <%= submit_tag("Find") %>
 <% end %>
 
-<% if @results.present? %>
+<% if params["category"] == "Movie" && @results.present? %>
   <% @results.each do |movie| %>
+  <%= form_tag searches_path, method: :get do %>
+    <%= hidden_field_tag :searchquery,  value: movie %>
+  <%= submit_tag("Find") %>
+<% end %>
   <div class="movie-details")>
     <div class="movie-description">
       <p><%= movie["title"] %></p>
@@ -19,6 +23,25 @@
     </div>
     <div class="movie-image">
       <p><%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie["poster_path"]}" %></p>
+    </div>
+  </div>
+  <% end %>
+<% elsif params["category"] == "Person" && @results.present? %>
+  <% @results.each do |actor| %>
+  <%  %>
+  <div class="movie-details")>
+    <div class="movie-description">
+      <p><%= actor["name"] %></p>
+      <% actor["known_for"].each do |movie| %>
+        <p><%= movie["title"] %></p>
+        <p><%= movie %></p>
+        <p><% movie_id = movie["id"] %></p>
+        <%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie["poster_path"]}" %>
+      <% end %>
+      <p><% actor_id = actor["id"] %></p>
+    </div>
+    <div class="movie-image">
+      <p><%= image_tag "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{actor["profile_path"]}" %></p>
     </div>
   </div>
   <% end %>
