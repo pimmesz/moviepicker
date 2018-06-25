@@ -1,0 +1,11 @@
+console.log("start update js");
+
+function addSelectedMovie(selectedmovieHTML) {
+  const selectedmovies = document.querySelector(".selected-movies")
+  selectedmovies.innerHTML = ""
+  selectedmovies.insertAdjacentHTML('beforeend', selectedmovieHTML);
+}
+
+addSelectedMovie('<%= j render "searches/search", search: @search %>');
+
+console.log("finish update js");
