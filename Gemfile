@@ -44,6 +44,7 @@ gem 'font-awesome-sass', '~> 5.0.9'
 gem 'simple_form'
 
 gem "themoviedb"
+gem "figaro"
 
 
 group :development, :test do

@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
     end
 
     # Implementing the search from moviedb gem
-
+    Tmdb::Api.key(ENV["Tmdb"])
     @search_results = Tmdb::Search.new
     @search_results.resource('movie')
     @search_results.query(params[:query]) # the query to search against
@@ -21,7 +21,6 @@ class SearchesController < ApplicationController
     @search["pickedmovies"].each do |result|
       @new_search << result
     end
-    raise
   end
 
   def update
