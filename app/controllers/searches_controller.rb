@@ -1,7 +1,6 @@
 class SearchesController < ApplicationController
   def index
     # Create new search to be filled with picked movies
-
     if Search.find_by_session_id(session.id)
       @search = Search.find_by_session_id(session.id)
     else
@@ -12,11 +11,17 @@ class SearchesController < ApplicationController
     end
 
     # Implementing the search from moviedb gem
-    Tmdb::Api.key("2d80876e5f6bec711a87959701829d27")
+
     @search_results = Tmdb::Search.new
     @search_results.resource('movie')
     @search_results.query(params[:query]) # the query to search against
     @results = @search_results.fetch # makes request
+
+    @new_search = []
+    @search["pickedmovies"].each do |result|
+      @new_search << result
+    end
+    raise
   end
 
   def update
