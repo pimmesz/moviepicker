@@ -1,6 +1,6 @@
 <div class="selected-movies">
   <% @search["pickedmovies"].each do |movie| %>
-    <p><%= movie["original_title"] %></p>
+    <p movie-id="<%= movie["id"] %>"><%= movie["original_title"] %></p>
   <% end %>
 </div>
 
